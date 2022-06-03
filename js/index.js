@@ -51,7 +51,7 @@ document.getElementById("submit").onclick = function () {
   var chemicalScores = document.getElementById("id-chemicalScore").value;
 
   stt++;
-  content(name, age, mathScores, physicalScores, chemicalScores);
+  content(stt, name, age, mathScores, physicalScores, chemicalScores);
 };
 //=======create rows containing unlimited information=======
 var content = function (
