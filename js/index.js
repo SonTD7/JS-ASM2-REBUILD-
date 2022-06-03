@@ -40,7 +40,7 @@ thMediumScores.innerText = "MEDIUM SCORE";
 thMediumScores.className = "thMediumScore col-1";
 
 var stt = 0;
-
+document.getElementById("root").appendChild(table);
 
 //=======create input function=======
 document.getElementById("submit").onclick = function () {
@@ -89,5 +89,9 @@ var content = function (
   let tdChemicalScoresCreatNew = document.createElement("td");
   trCreatNew.appendChild(tdChemicalScoresCreatNew);
   tdChemicalScoresCreatNew.innerText = chemicalScores;
+
+  let tdMediumScore = document.createElement("td");
+  trCreatNew.appendChild(tdMediumScore);
+  tdMediumScore.id = "dtb" + stt;
 };
-document.getElementById("root").appendChild(table);
+
