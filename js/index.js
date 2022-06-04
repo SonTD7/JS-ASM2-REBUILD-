@@ -92,6 +92,7 @@ var content = function (
 
   let tdMediumScore = document.createElement("td");
   trCreatNew.appendChild(tdMediumScore);
-  tdMediumScore.id = "dtb" + stt;
+  tdMediumScore.id = "mediumScore" + stt;
 };
+// =======retrieve the value in html and print out the average score=======
 
