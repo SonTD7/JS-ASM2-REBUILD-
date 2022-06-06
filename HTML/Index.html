@@ -18,8 +18,8 @@
     <!-- ======= Form-input ======= -->
     <!-- onsubmit="return false;" mặc định sẽ tự submit và clear dữ liệu sau đó. có thể chặn hành động đó bằng cách ->  onsubmit="event.preventDefault();"  -->
     <form onsubmit="event.preventDefault();" class=" row ">
-      <div class=" col-12 col-md-4 mt-5 border border-success">
-        <div class="p-2">
+      <div class=" col-12 col-md-4 mt-5 ">
+        <div class="p-2 border border-success">
           <div class="form-group">
             <label for="name">NAME:</label>
             <input type="text" placeholder="Enter Name" class="form-control" id="id-name" value="">
@@ -48,9 +48,10 @@
       <div class="col-12 col-md-8">
         <!-- ======= Creat-table ======= -->
         <div id="root"></div>
-        <div class="result ">
-          <button type="button" class="btn btn-warning ">Average Score Result</button>
-          <button type="button" class="btn btn-danger">Results Of Classification</button>
+        <div class="result mt-3 d-flex justify-content-end">
+          <button type="button" class="btn btn-warning " id="averageScore">Average Score Result</button>
+          <div class="p-2"> </div>
+          <button type="button" class="btn btn-danger " id="classification">Results Of Classification</button>
         </div>
       </div>
     </form>

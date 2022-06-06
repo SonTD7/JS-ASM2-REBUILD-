@@ -95,4 +95,25 @@ var content = function (
   tdMediumScore.id = "mediumScore" + stt;
 };
 // =======retrieve the value in html and print out the average score=======
+document.getElementById("averageScore").onclick = function(){
+for(let i=1; i<=stt; i++ ){
+  let dataScore = document.getElementById("data" + i);
+  let data1_stt= dataScore.childNodes[3];
+  let data2_stt = dataScore.childNodes[4];
+  let data3_stt = dataScore.childNodes[5];
+  const average = (Number(data1_stt.innerHTML)+Number(data2_stt.innerHTML)+Number(data3_stt.innerHTML))/3;
+  document.getElementById("mediumScore" + i).innerHTML = average;
+}
+}
+
+//====== confirm good student and color red======
+
+document.getElementById("classification").onclick=function(){
+  for(let i=1; i<=stt; i++){
+    let average = document.getElementById("mediumScore" + i).innerHTML;
+    if (average >= 8.5){
+      document.getElementById("mediumScore" + i).style.backgroundColor="red";
+    }
+  }
+}
 
