@@ -162,7 +162,7 @@ var content=function(stt,
     mathScores,
     physicalScores,
     chemicalScores){
-let trCreatNew = $("<td>");
+let trCreatNew = $("<tr>");
 table.append(trCreatNew);
 // trCreatNew.addId("data" + stt);
 
