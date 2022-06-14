@@ -182,7 +182,7 @@ tdAgeCreatNew.text(age);
 
 let tdMathScoresCreatNew = $("<td>");
 trCreatNew.append(tdMathScoresCreatNew);
-tdAgeCreatNew.text(mathScores);
+tdMathScoresCreatNew.text(mathScores);
 
 let tdPhysicalScoresCreatNew = $("<td>");
 trCreatNew.append(tdPhysicalScoresCreatNew);
@@ -214,6 +214,8 @@ document.getElementById("averageScore").onclick = function () {
   }
 };
 
+// =======retrieve the value in html and print out the average score=======Jquery
+chỗ này nha khoa
 //====== confirm good student and color red======
 
 document.getElementById("classification").onclick = function () {
