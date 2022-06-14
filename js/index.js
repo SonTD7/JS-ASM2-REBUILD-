@@ -199,9 +199,28 @@ $(tdMediumScore).attr("id","mediumScore" + stt);
   }
 
 // =======retrieve the value in html and print out the average score=======
-document.getElementById("averageScore").onclick = function () {
+// document.getElementById("averageScore").onclick = function () {
+//   for (let i = 1; i <= stt; i++) {
+//     let dataScore = document.getElementById("data" + i);
+//     let data1_stt = dataScore.childNodes[3];
+//     let data2_stt = dataScore.childNodes[4];
+//     let data3_stt = dataScore.childNodes[5];
+//     const average =
+//       (Number(data1_stt.innerHTML) +
+//         Number(data2_stt.innerHTML) +
+//         Number(data3_stt.innerHTML)) /
+//       3;
+//     document.getElementById("mediumScore" + i).innerHTML = average;
+//   }
+// };  
+
+// =======retrieve the value in html and print out the average score=======Jquery
+
+
+$('#averageScore').click(function(){
   for (let i = 1; i <= stt; i++) {
-    let dataScore = document.getElementById("data" + i);
+    let dataScore = $(`#data${i}`)[0];
+    console.log(dataScore)
     let data1_stt = dataScore.childNodes[3];
     let data2_stt = dataScore.childNodes[4];
     let data3_stt = dataScore.childNodes[5];
@@ -210,19 +229,25 @@ document.getElementById("averageScore").onclick = function () {
         Number(data2_stt.innerHTML) +
         Number(data3_stt.innerHTML)) /
       3;
-    document.getElementById("mediumScore" + i).innerHTML = average;
+      $(`#mediumScore${i}`)[0].innerHTML = average;
   }
-};
-
-// =======retrieve the value in html and print out the average score=======Jquery
-chỗ này nha khoa
+});
 //====== confirm good student and color red======
 
-document.getElementById("classification").onclick = function () {
-  for (let i = 1; i <= stt; i++) {
-    let average = document.getElementById("mediumScore" + i).innerHTML;
-    if (average >= 8.5) {
-      document.getElementById("mediumScore" + i).style.backgroundColor = "red";
+// document.getElementById("classification").onclick = function () {
+//   for (let i = 1; i <= stt; i++) {
+//     let average = document.getElementById("mediumScore" + i).innerHTML;
+//     if (average >= 8.5) {
+//       document.getElementById("mediumScore" + i).style.backgroundColor = "red";
+//     }
+//   }
+// };
+//====== confirm good student and color red======Jquery
+$("#classification").click(function () {
+  for (let i = 1; i <= stt; i++){
+    let average = $(`#mediumScore${i}`)[0].innerHTML;
+    if(average >= 8.5){
+      $(`#mediumScore${i}`).css("background-color", "red");
     }
   }
-};
+});
