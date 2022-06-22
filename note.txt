@@ -1,0 +1,16 @@
+function son(b){
+    b.c();
+    b.d();
+    console.log(b.e);
+};
+let read = {
+    c: function(){
+        console.log("Đã gọi hàm C.");
+    },
+    d: function(){
+        console.log("Đã gọi hàm D.");
+    },
+    e: "eeee"
+}
+son(read);
+
