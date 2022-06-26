@@ -3,23 +3,56 @@ $("#nhanVien").click(() => {
     url: "https://rjs101xbackend.herokuapp.com/staffs",
     success: function (response) {
       console.log(response);
-      let theme = $("<div>");
-      theme.addClass("container");
-      let row = $("<div>");
-      theme.append(row);
-      row.addClass("row");
-      for (let i = 0; i < response.length; i++) {
-        const element = response[i];
+      // https://rjs101xbackend.herokuapp.com/departments
+      $.ajax({
+        url: "https://rjs101xbackend.herokuapp.com/departments",
+        success: function (departments) {
+          console.log(departments);
+          
+         
+          let theme = $("<div>");
+          theme.addClass("container");
+          let row = $("<div>");
+          theme.append(row);
+          row.addClass("row");
+          for (let i = 0; i < response.length; i++) {
+            const element = response[i];
+    
+            //tạo giao diện nhân viên
+            let content = $("<div>");
+            row.append(content);
+            content.addClass(
+              "row1 col-12 col-md-2 d-flex mr-3 img-thumbnail align-self-center"
+            );
+            content.html(imgName(element,departments));
+          }
+          $("#root").html(theme);
+        },
+        error: function (response) {
+          console.log(response);
+        },
+      });
 
-        //tạo giao diện nhân viên
-        let content = $("<div>");
-        row.append(content);
-        content.addClass(
-          "row1 col-12 col-md-2 d-flex mr-3 img-thumbnail align-self-center"
-        );
-        content.html(imgName(element));
-      }
-      $("#root").html(theme);
+
+//
+
+      // let theme = $("<div>");
+      // theme.addClass("container");
+      // let row = $("<div>");
+      // theme.append(row);
+      // row.addClass("row");
+      // for (let i = 0; i < response.length; i++) {
+      //   const element = response[i];
+
+      //   //tạo giao diện nhân viên
+      //   let content = $("<div>");
+      //   row.append(content);
+      //   content.addClass(
+      //     "row1 col-12 col-md-2 d-flex mr-3 img-thumbnail align-self-center"
+      //   );
+      //   content.html(imgName(element));
+      // }
+      // $("#root").html(theme);
     },
     error: function (response) {
       console.log(response);
@@ -27,7 +60,7 @@ $("#nhanVien").click(() => {
   });
 });
 
-var imgName = (employee) => {
+var imgName = (employee, departments) => {
   let imgNv = $("<div>");
   imgNv.addClass("image");
   let image = document.createElement("img");
@@ -64,20 +97,27 @@ console.log(d);
 console.log(employee.doB);
 
 
-  let department = $("<p>");
-  department.addClass("h6");
-  overlay.append(department);
-  department.append(employee.departmentId);
+  let departmentElement = $("<div>");
+  departmentElement.addClass("h6");
+  overlay.append(departmentElement);
+  for(let i=0; i<departments.length; i++) {
+    const department = departments[i];
+    if (department.id === employee.departmentId){
+      departmentElement.append(department.name);
+    }
+  }
+  
 
   let canTakeBreaks = $("<p>");
   canTakeBreaks.addClass("h6");
   overlay.append(canTakeBreaks);
-  canTakeBreaks.append(employee.annualLeave);
+  canTakeBreaks.append( "Can take breaks:"  + employee.annualLeave);
+  
 
   let numberWorking = $("<p>");
   numberWorking.addClass("h6");
   overlay.append(numberWorking);
-  numberWorking.append(employee.overTime);
+  numberWorking.append("Number of working days:" + employee.overTime);
   let name = $("<p>");
   name.addClass("h5");
   overlay.append(name);
@@ -98,5 +138,7 @@ console.log(employee.doB);
 // .catch(error => {
 // alert(error);
 // });
+
+//async await fetch (để đưa thư viện ra ngoài và cho phép nó chạy tuần tự, cái này chạy xong thì cái kia mới chạy )
 
 // từ b gọi hai hàm thuộc b, một hàng in ra dòng chữ là, -> đã gọi hàm c, cái còn lại là đã gọi hàm d
