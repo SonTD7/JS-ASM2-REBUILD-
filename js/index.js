@@ -27,20 +27,65 @@ $("#nhanVien").click(() => {
   });
 });
 
-var imgName = (element) => {
+var imgName = (employee) => {
   let imgNv = $("<div>");
-  let image = document.createElement('img');
-  
-  image.src  = '/IMG_5098.jpg';
+  imgNv.addClass("image");
+  let image = document.createElement("img");
+
+  image.src = "/IMG_5098.jpg";
   imgNv.append(image);
   // imgNv.html(element.imgNv);
-  imgNv.click(function (){
-    console.log(element.name, element.doB,  element.salaryScale, element.startDate);
-  });
+  // imgNv.click(function (){
+
+  //   console.log(element.name, element.doB,  element.salaryScale, element.startDate);
+  // });
+
+  let overlay = $("<div>");
+  overlay.addClass("overlay");
+  imgNv.append(overlay);
+
+  let salary = $("<p>");
+  salary.addClass("amount");
+  overlay.append(salary);
+  salary.append(employee.salary);
+
+  // let name = $("<p>");
+  // name.addClass("h5");
+  // overlay.append(name);
+  // name.append(employee.name);
+
+  let dob = $("<p>");
+  dob.addClass("h6");
+  overlay.append(dob);
+  const d = new Date(employee.doB);
+  dob.append(d.getFullYear() +'/'+ d.getDate()+'/'+(d.getMonth()+1));
+
+console.log(d);
+console.log(employee.doB);
+
+
+  let department = $("<p>");
+  department.addClass("h6");
+  overlay.append(department);
+  department.append(employee.departmentId);
+
+  let canTakeBreaks = $("<p>");
+  canTakeBreaks.addClass("h6");
+  overlay.append(canTakeBreaks);
+  canTakeBreaks.append(employee.annualLeave);
+
+  let numberWorking = $("<p>");
+  numberWorking.addClass("h6");
+  overlay.append(numberWorking);
+  numberWorking.append(employee.overTime);
+  let name = $("<p>");
+  name.addClass("h5");
+  overlay.append(name);
+  name.append(employee.name);
+
+  // content(salary, name, dob, department, canTakeBreaks, numberWorking);
   return imgNv;
 };
-
-
 
 //Ý tưởng => tạo một form chứa ảnh và tên => khi ấn vào form sự kiện cuộn trang
 //ajax là công cụ kết nối server
