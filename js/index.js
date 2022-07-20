@@ -3,51 +3,56 @@
 // fetch(employee)
 //      .then((response) => response.json())
 //      .then((data) => console.log(data));
-$("#nhanVien").click(() =>{
-fetch("https://rjs101xbackend.herokuapp.com/staffs")
-  .then(function (staffsJson) {
-    let result = staffsJson.json().then((staffs) => {
-      loadDepartments(staffs)
-    });
-  })
-  .catch((error) => {
-    alert(error);
-  });
-})
-var loadDepartments = (staffs) => {
-  console.log(staffs);
-  fetch("https://rjs101xbackend.herokuapp.com/departments")
-  .then(function (departmentsJson) {
-    let result = departmentsJson.json().then((departments) => {
-      console.log(departments);
-    // dòng 24 này em xem trên mạng tại em chưa thấy cái nào để nó nhận là nó sẽ chui vào root.
-      const divRoot = document.querySelector(".root");
-      divRoot.append(theme);
-      let theme = $("<div>");
-      theme.addClass("container");
-      let row = $("<div>");
-      theme.append(row);
-      row.addClass("row");
-      for (let i = 0; i < staffs.length; i++) {
-        const element = staffs[i];
 
-        //tạo giao diện nhân viên
-        let content = $("<div>");
-        row.append(content);
-        content.addClass(
-          "row1 col-12 col-md-2 d-flex mr-3 img-thumbnail align-self-center"
-        );
-        content.html(imgName(element, departments));
-      }
+//---------------------------------------------------------
+// $("#nhanVien").click(() =>{
+// fetch("https://rjs101xbackend.herokuapp.com/staffs")
+//   .then(function (staffsJson) {
+//     let result = staffsJson.json().then((staffs) => {
+//       loadDepartments(staffs)
+//     });
+//   })
+//   .catch((error) => {
+//     alert(error);
+//   });
+// })
+// var loadDepartments = (staffs) => {
+//   console.log(staffs);
+//   fetch("https://rjs101xbackend.herokuapp.com/departments")
+//   .then(function (departmentsJson) {
+//     let result = departmentsJson.json().then((departments) => {
+//       console.log(departments);
+//     // dòng 24 này em xem trên mạng tại em chưa thấy cái nào để nó nhận là nó sẽ chui vào root.
+//       const divRoot = document.querySelector(".root");
+//       divRoot.append(theme);
+//       let theme = $("<div>");
+//       theme.addClass("container");
+//       let row = $("<div>");
+//       theme.append(row);
+//       row.addClass("row");
+//       for (let i = 0; i < staffs.length; i++) {
+//         const element = staffs[i];
+
+//         //tạo giao diện nhân viên
+//         let content = $("<div>");
+//         row.append(content);
+//         content.addClass(
+//           "row1 col-12 col-md-2 d-flex mr-3 img-thumbnail align-self-center"
+//         );
+//         content.html(imgName(element, departments));
+//       }
      
-    });
-     $("#root").html(theme);
-  })
+//     });
+//      $("#root").html(theme);
+//   })
   
-  .catch((error) => {
-    alert(error);
-  });
-};
+//   .catch((error) => {
+//     alert(error);
+//   });
+// };
+
+//----------------------------------------------------------
+
 
 //=======Chỗ này tương tự bên kia nên em thả tạm vào thử chạy ko xong em sửa lại để đơn giản phần css nhất có thể=======
 
@@ -106,3 +111,28 @@ var loadDepartments = (staffs) => {
 // 7 load all on link ->9or12 //// 9 đổi cái dữ liệu nhận được thành dạng Json, sau đó nó gọi hàm loadDe... và truyền staffs vào 
 
 // mò https://www.w3schools.com/js/js_async.asp
+
+
+$("#nhanVien").click(() =>{
+var staffs = 'https://rjs101xbackend.herokuapp.com/staffs';
+fetch(staffs)
+.then(function (response) {
+  return response.json();
+  //Json.parse: JSON -> JS 
+})
+.then(function(infoStaffs){
+  console.log(infoStaffs);
+  var  htmls = infoStaffs.map(function (infoStaff){
+    return `<div class="container"> 
+    <div class="row">
+    <p>${infoStaff.name}</p>
+    </div>
+    </div>`
+  });
+  var html = htmls.join('');
+  $("#root").html(html);
+})
+.catch(function (err) {
+  alert('co loi roi be son oi');
+});
+});
