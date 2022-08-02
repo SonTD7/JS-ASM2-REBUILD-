@@ -41,11 +41,11 @@
 //         );
 //         content.html(imgName(element, departments));
 //       }
-     
+
 //     });
 //      $("#root").html(theme);
 //   })
-  
+
 //   .catch((error) => {
 //     alert(error);
 //   });
@@ -53,9 +53,7 @@
 
 //----------------------------------------------------------
 
-
 //=======Chỗ này tương tự bên kia nên em thả tạm vào thử chạy ko xong em sửa lại để đơn giản phần css nhất có thể=======
-
 
 // var imgName = (employee, departments) => {
 //   let imgNv = $("<div>");
@@ -108,31 +106,55 @@
 //   return imgNv;
 // };
 
-// 7 load all on link ->9or12 //// 9 đổi cái dữ liệu nhận được thành dạng Json, sau đó nó gọi hàm loadDe... và truyền staffs vào 
+// 7 load all on link ->9or12 //// 9 đổi cái dữ liệu nhận được thành dạng Json, sau đó nó gọi hàm loadDe... và truyền staffs vào
 
 // mò https://www.w3schools.com/js/js_async.asp
 
+{
+  /* <p>${infoStaff.name}</p> */
+}
 
-$("#nhanVien").click(() =>{
-var staffs = 'https://rjs101xbackend.herokuapp.com/staffs';
-fetch(staffs)
-.then(function (response) {
-  return response.json();
-  //Json.parse: JSON -> JS 
-})
-.then(function(infoStaffs){
-  console.log(infoStaffs);
-  var  htmls = infoStaffs.map(function (infoStaff){
-    return `<div class="container"> 
-    <div class="row">
-    <p>${infoStaff.name}</p>
-    </div>
-    </div>`
-  });
-  var html = htmls.join('');
-  $("#root").html(html);
-})
-.catch(function (err) {
-  alert('co loi roi be son oi');
-});
+$("#nhanVien").click(() => {
+  var staffs = "https://rjs101xbackend.herokuapp.com/staffs";
+  fetch(staffs)
+    .then(function (response) {
+      return response.json();
+      //Json.parse: JSON -> JS
+    })
+    .then(function (infoStaffs) {
+      console.log(infoStaffs);
+      // <div class="container">
+      //   <div class="row">
+      //    <div class="row1 col-12 col-md-2 d-flex mr-3 img-thumbnail align-self-center> </div>
+      //   </div>
+      //   </div>
+      var htmls = infoStaffs.map(function (infoStaff) {
+
+        var imgAll = document.createElement("img");
+        imgAll.src = "./img/IMG_5098.jpg";
+        return `
+        
+    <div class="row1 col-12 col-md-2 d-flex mr-3 img-thumbnail align-self-center> 
+    
+    ${imgAll.outerHTML}
+    
+    </div> 
+    `;
+      });
+
+      var html = htmls.join("");
+
+      html = `  <div class="container"> 
+ <div class="row">
+    ${html} 
+ </div>
+   </div> `;
+
+      $("#root").html(html);
+    console.log(imgAll);
+
+    })
+    .catch(function (err) {
+      alert("co loi roi be son oi");
+    });
 });
