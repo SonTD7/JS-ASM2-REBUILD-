@@ -1,0 +1,3 @@
+- Ở mini exercise này thì chúng ta sẽ chú trọng đến những thao tác về tương tác dữ liệu. Cụ thể là fetch API. 
+- Dùng async thay cho cách gọi thông thường.
+- Lợi ích là code sẽ ngắn gọn, nhanh hơn và dễ sửa về sau. 
